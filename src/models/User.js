@@ -6,6 +6,11 @@ const bcryptjs = require('bcryptjs');
 
 // apos a concexao com sucesso no BD, ira criar uma tabela com 4 colunas
 const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        require: true,
+        unique: true,
+    },
     email: {
         type: String,
         require: true,

@@ -9,13 +9,20 @@ const router = express.Router();
 
 // chamando a funcao Router e passando a rota Register
 router.post('/register', async (req, res) => {
-    //  atribuo uma const email,que é o mesmo email que o usuario esta tentando registrar
-    //  e faço uma busca dentro da UserModel, e torna uma msg se o email ja existir
+    // verificando se ja existe email ou nome no BD
     const { email } = req.body;
     if (await UserModel.findOne({ email })) {
         return res.status(400).json({
             error: true,
-            message: 'Email ja existe',
+            message: 'E-mail ja existe',
+        });
+    }
+
+    const { name } = req.body;
+    if (await UserModel.findOne({ name })) {
+        return res.status(400).json({
+            error: true,
+            message: 'Nome ja existe',
         });
     }
 
