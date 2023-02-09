@@ -7,7 +7,11 @@ const express = require('express');
 const AuthController = require('./controller/AuthController');
 
 // atribuindo a funcao express para const app
+const cors = required('cors');
+
 const app = express();
+
+app.use(cors());
 
 // fazendo que  a const app leia arquivos em formato json
 app.use(express.json());
